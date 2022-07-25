@@ -1,3 +1,34 @@
+*.log
+wp-config.php
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/mu-plugins/
+wp-content/wp-cache-config.php
+wp-content/plugins/hello.php
+wp-admin
+wp-includes
+/index.php
+readme.html
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+wp-mail-smtp
+/xmlrpc.php
+
 # ignore everything in the root except the "wp-content" directory.
 !wp-content/
 
@@ -7,12 +38,14 @@ wp-content/*
 !wp-content/mu-plugins/
 !wp-content/plugins/
 !wp-content/themes/
+wp-content/themes/storefront
 
 # ignore these plugins
 wp-content/plugins/hello.php
-
+wp-content/plugins/redis-cache
 # ignore specific themes
 wp-content/themes/twenty*/
+wp-content/themes/*/build
 
 # ignore node dependency directories
 node_modules/
@@ -21,3 +54,5 @@ node_modules/
 *.log
 *.sql
 *.sqlite
+.DS_Store
+.htaccess
