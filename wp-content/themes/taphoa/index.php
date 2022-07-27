@@ -3,10 +3,7 @@
 get_header(); ?>
 
 <div id="main-app-container">
-    <div class="loading">
-        <div class="outerCircle"></div>
-        <div class="innerCircle"></div>
-    </div>
+    
 </div>
 <?php 
     $custom_logo_id = get_theme_mod( 'custom_logo' );

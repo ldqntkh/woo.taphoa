@@ -31,17 +31,6 @@ get_header(  ); ?>
 		// do_action( 'woocommerce_before_main_content' );
 	?>
 
-		<?php while ( have_posts() ) : ?>
-			<?php the_post(); ?>
-
-			<?php 
-				// global $product;
-				// echo $product;
-                // wc_get_template_part( 'content', 'single-product' ); 
-            ?>
-
-		<?php endwhile; // end of the loop. ?>
-
 	<?php
 		/**
 		 * woocommerce_after_main_content hook.
@@ -59,35 +48,29 @@ get_header(  ); ?>
 		 */
 		// do_action( 'woocommerce_sidebar' );
 	?>
-
-	<div id="main-app-container">
-		<div class="loading">
-			<div class="outerCircle"></div>
-			<div class="innerCircle"></div>
-		</div>
-	</div>
 <?php 
     
 
 	$transient_product = 'TRANSIENT_PRODUCT';
 	$payload = get_transient( $transient_product );
 	if( !$payload ) {
-		$custom_logo_id = get_theme_mod( 'custom_logo' );
-		$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-		$site_logo = '';
-		if( isset( $image[0] ) ) $site_logo = $image[0];
 		$payload = [
 			"page"	=> 'single-product',
-			"title"	=> 'Chi tiết sản phẩm',
-			"site_logo"	=> $site_logo,
+			"title"	=> $product->get_name() . ' - ' . get_bloginfo('name'),
 			"product_id"	=> $product->get_id()
 		];
+		set_transient( $transient_archive, json_encode( $payload ), 8 * 3600 );
+	} else {
+		$payload = json_decode( $payload );
 	}
 
 ?>
 <script>
     window.payload = <?= json_encode($payload) ?>;
 </script>
+
+<div id="main-app-container">
+</div>
 <?php
 get_footer( );
 

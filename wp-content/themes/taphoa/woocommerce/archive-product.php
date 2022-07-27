@@ -33,18 +33,12 @@ $payload = get_transient($transient_archive);
 if( $payload ) {
     $payload = json_decode( $payload );
 } else {
-    $custom_logo_id = get_theme_mod( 'custom_logo' );
-    $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-    $site_logo = '';
-    if( isset( $image[0] ) ) $site_logo = $image[0];
-    
     if( is_shop() ) {
         $count_posts = wp_count_posts( 'product' );
         $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
         $payload = [
             "page" => 'product-shop',
             "title" => woocommerce_page_title(false),
-            "site_logo" => $site_logo,
             "paged" => $paged,
             "total" => $count_posts->publish,
             "cat_url" => get_permalink( wc_get_page_id( 'shop' ) )
@@ -58,8 +52,7 @@ if( $payload ) {
         $url = get_category_link( $category_id );
         $payload = [
             "page" => 'product-archive',
-            "title" => $category->name,
-            "site_logo" => $site_logo,
+            "title" => $category->name . ' - ' . get_bloginfo('name'),
             "category" => json_encode($category),
             "paged" => $paged,
             "category_id" => $category_id,
@@ -78,7 +71,6 @@ if( $payload ) {
     <script>
         window.payload = <?php echo json_encode($payload) ?> ;
     </script>
-    <div id="main-app-container"></div>
 <?php
 // if ( woocommerce_product_loop() ) {
 
@@ -136,5 +128,8 @@ if( $payload ) {
 //  * @hooked woocommerce_get_sidebar - 10
 //  */
 // do_action( 'woocommerce_sidebar' );
-
+?>
+    <div id="main-app-container">
+	</div>
+<?php
 get_footer(  );

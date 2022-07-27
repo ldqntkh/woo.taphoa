@@ -1,0 +1,46 @@
+{
+  "name": "woo.taphoa",
+  "version": "1.0.0",
+  "description": "<!DOCTYPE html> <html lang=\"en\"> <head> \t<meta name=\"viewport\" content=\"width=device-width\" /> \t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> \t<title>WordPress &#8250; ReadMe</title> \t<link rel=\"stylesheet\" href=\"wp-admin/css/install.css?ver=20100228\" type=\"text/css\" /> </head> <body> <h1 id=\"logo\"> \t<a href=\"https://wordpress.org/\"><img alt=\"WordPress\" src=\"wp-admin/images/wordpress-logo.png\" /></a> </h1> <p style=\"text-align: center\">Semantic Personal Publishing Platform</p>",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --mode production --progress",
+    "dev": "rm -rf node_modules/.cache && cross-env NODE_ENV=development webpack --watch --mode development --progress",
+    "clean": "rm -rf /wp-content/themes/*/build/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldqntkh/woo.taphoa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ldqntkh/woo.taphoa/issues"
+  },
+  "homepage": "https://github.com/ldqntkh/woo.taphoa#readme",
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-transform-runtime": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-react": "^7.18.6",
+    "@quasar/babel-preset-app": "^2.0.1",
+    "axios": "^0.27.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "cssnano": "^5.1.12",
+    "mini-css-extract-plugin": "^2.6.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "sass": "^1.54.0",
+    "sass-loader": "^13.0.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "uuid": "^8.3.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-fix-style-only-entries": "^0.6.1"
+  }
+}

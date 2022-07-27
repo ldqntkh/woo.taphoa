@@ -13,3 +13,7 @@ require_once INC_PATH . '/helper/theme/init-theme-support.php';
 // WOOCOMMERCE
 require_once INC_PATH . '/helper/woocommerce/add-theme-support.php';
 // END WOOCOMMERCE
+
+// SCRIPTS
+require_once INC_PATH . '/init-script.php';
+// END SCRIPTS
