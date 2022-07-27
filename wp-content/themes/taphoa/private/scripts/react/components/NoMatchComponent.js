@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 
-const MainHeaderComponent = lazy(()=> import('./header/MainHeaderComponent'));
-const FooterComponent = lazy(()=> import('./footer/FooterComponent'));
+import FooterComponent from './footer/FooterComponent';
+import MainHeaderComponent from './header/MainHeaderComponent';
 
 class NoMatchComponent extends React.Component {
     constructor(props) {

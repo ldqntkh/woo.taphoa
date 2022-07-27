@@ -1,7 +1,8 @@
 import React, { lazy } from 'react';
 
-const MainHeaderComponent = lazy(()=> import('./header/MainHeaderComponent'));
-const FooterComponent = lazy(()=> import('./footer/FooterComponent'));
+import FooterComponent from './footer/FooterComponent';
+import MainHeaderComponent from './header/MainHeaderComponent';
+
 
 class HomePageComponent extends React.Component {
     constructor(props) {
@@ -18,4 +19,4 @@ class HomePageComponent extends React.Component {
     }
 }
 
-export default HomePageComponent;
+export default HomePageComponent

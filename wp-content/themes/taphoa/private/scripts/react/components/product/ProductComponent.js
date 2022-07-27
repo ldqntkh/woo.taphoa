@@ -1,29 +1,27 @@
 import React from 'react';
-
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const MainHeaderComponent = lazy(()=> import('../header/MainHeaderComponent'));
-const FooterComponent = lazy(()=> import('../footer/FooterComponent'));
+import FooterComponent from '../footer/FooterComponent';
+import MainHeaderComponent from '../header/MainHeaderComponent';
 
-class ProductComponent extends React.Component {
-    constructor(props) {
-        super(props);
+
+const ProductComponent = ()=> {
+
+    if(payload && payload.page == '404') {
+        return <NoMatchComponent />
     }
 
-    async componentDidMount() {
-        
-    }
+    let matchParams = useParams();
 
-    render() {
-        return(
-            <React.Fragment>
-                <MainHeaderComponent />
-                <div>Product nè</div>
+    return(
+        <React.Fragment>
+            <MainHeaderComponent />
+            <div>Product nè</div>
 
-                <FooterComponent/>
-            </React.Fragment>
-        )
-    }
+            <FooterComponent/>
+        </React.Fragment>
+    )
 }
 
 export default ProductComponent;

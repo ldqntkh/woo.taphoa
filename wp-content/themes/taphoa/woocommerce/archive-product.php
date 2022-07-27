@@ -53,7 +53,7 @@ if( $payload ) {
         $payload = [
             "page" => 'product-archive',
             "title" => $category->name . ' - ' . get_bloginfo('name'),
-            "category" => json_encode($category),
+            // "category" => json_encode($category),
             "paged" => $paged,
             "category_id" => $category_id,
             "category_slug" => $category_slug,

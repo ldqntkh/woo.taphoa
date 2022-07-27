@@ -7,8 +7,8 @@ get_header(); ?>
 </div>
 <script>
     window.payload = {
-        page: 'home',
-        title: 'Nội dung trang chủ'
+        page: '404',
+        title: 'Nội dung không tồn tại',
     };
 </script>
 <?php

@@ -1,6 +1,8 @@
 footer {
     width: 100%;
-
+    background: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     .footer-info {
         display: flex;
         flex-direction: column;
