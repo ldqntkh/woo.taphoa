@@ -14,7 +14,9 @@ class MainHeaderComponent extends React.Component {
         super(props);
         this.state = {
             logoUrl: '',
-            menus: []
+            menus: [],
+            searchValue: '',
+            open_class: ''
         }
     }
 
@@ -61,21 +63,25 @@ class MainHeaderComponent extends React.Component {
         document.title = title;
     }
 
+    _isOpenMenu = (open_class)=> {
+        this.setState({ open_class: open_class == '' ? 'open' : '' })
+    }
+
     render() {
         let {
             logoUrl,
             title_seo,
             payload,
-            menus
+            menus,
+            open_class
         } = this.state;
 
-        let open_class = "";
-        if( this.props.headerData.isShowMenu ) {
-            open_class = 'open';
+        if( open_class != '' ) {
             document.body.classList.add('disable');
         } else {
             document.body.classList.remove('disable')
         }
+        
         return(
             <React.Fragment>
                 <header>
@@ -98,10 +104,55 @@ class MainHeaderComponent extends React.Component {
                                                 <Link to={item.url} onClick={()=> {
                                                     this._setPageTitle(item.title_seo);
                                                     window.payload = item.payload;
+                                                    this._isOpenMenu(open_class)
                                                     this.props.TriggerMenuMobile();
                                                 }}>{item.label}</Link>
                                                 { item.subs && item.subs.length > 0 &&
                                                     <ul className='sub-items'>
+                                                        {
+                                                            item.subs.map((subItem, subIndex) => 
+                                                                <li key={uuidv4()}>
+                                                                    <Link onClick={()=> {
+                                                                        this._setPageTitle(subItem.title_seo);
+                                                                        window.payload = subItem.payload;
+                                                                        this._isOpenMenu(open_class)
+                                                                        this.props.TriggerMenuMobile();
+                                                                    }} to={subItem.url}>{subItem.label}</Link>
+                                                                </li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                }
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </nav>
+                        <nav className='hide-mobile'>
+                            <ul className='nav-menus'>
+                                {
+                                    menus && menus.map((item, index) => {
+                                        return(
+                                            <li key={uuidv4()} className={ item.subs && item.subs.length > 0 ? 'items have-sub' : 'items' }>
+                                                <Link 
+                                                    onClick={()=> {
+                                                        this._setPageTitle(item.title_seo);
+                                                        window.payload = item.payload;
+                                                        this.props.TriggerMenuMobile();
+                                                    }}
+                                                    to={ item.subs && item.subs.length > 0 ?  "#" : item.url }
+                                                >{item.label}</Link>
+                                                { item.subs && item.subs.length > 0 &&
+                                                    <ul className='sub-items'>
+                                                        { item.subs && item.subs.length > 0 && 
+                                                            <li key={uuidv4()}>
+                                                                <Link onClick={()=> {
+                                                                    this._setPageTitle(item.title_seo);
+                                                                    window.payload = item.payload;
+                                                                    this.props.TriggerMenuMobile();
+                                                                }} to={item.url}>{item.label}</Link>
+                                                            </li> }
                                                         {
                                                             item.subs.map((subItem, subIndex) => 
                                                                 <li key={uuidv4()}>
@@ -121,58 +172,25 @@ class MainHeaderComponent extends React.Component {
                                 }
                             </ul>
                         </nav>
-                        <nav className='hide-mobile'>
-                            <ul className='nav-menus'>
-                                    {
-                                        menus && menus.map((item, index) => {
-                                            return(
-                                                <li key={uuidv4()} className={ item.subs && item.subs.length > 0 ? 'items have-sub' : 'items' }>
-                                                    <Link 
-                                                        onClick={()=> {
-                                                            this._setPageTitle(item.title_seo);
-                                                            window.payload = item.payload;
-                                                            this.props.TriggerMenuMobile();
-                                                        }}
-                                                        to={ item.subs && item.subs.length > 0 ?  "#" : item.url }
-                                                    >{item.label}</Link>
-                                                    { item.subs && item.subs.length > 0 &&
-                                                        <ul className='sub-items'>
-                                                            { item.subs && item.subs.length > 0 && 
-                                                                <li key={uuidv4()}>
-                                                                    <Link onClick={()=> {
-                                                                        this._setPageTitle(item.title_seo);
-                                                                        window.payload = item.payload;
-                                                                        this.props.TriggerMenuMobile();
-                                                                    }} to={item.url}>{item.label}</Link>
-                                                                </li> }
-                                                            {
-                                                                item.subs.map((subItem, subIndex) => 
-                                                                    <li key={uuidv4()}>
-                                                                        <Link onClick={()=> {
-                                                                            this._setPageTitle(subItem.title_seo);
-                                                                            window.payload = subItem.payload;
-                                                                            this.props.TriggerMenuMobile();
-                                                                        }} to={subItem.url}>{subItem.label}</Link>
-                                                                    </li>
-                                                                )
-                                                            }
-                                                        </ul>
-                                                    }
-                                                </li>
-                                            )
-                                        })
-                                    }
-                                </ul>
-                        </nav>
+                        <div className='hide-mobile search-box'>
+                            <input type="text" placeholder="Bạn tìm gì..." />
+                            <Link to="/gio-hang">
+                                <span id='cart-total'>0</span>
+                                <i className="i-cart"></i>
+                            </Link>
+                        </div>
                     </div>
                     <div className={`hamburger-menu ${open_class}`} onClick={()=> {
-                        // this.setState({ open_class: open_class == '' ? 'open' : '' });
+                        this._isOpenMenu(open_class)
                         this.props.TriggerMenuMobile();
                     }}><div className='line'></div></div>
                 </header>
                 {
-                    this.props.headerData.isShowMenu &&
-                    <div className='rectang-menu' onClick={this.props.TriggerMenuMobile}></div>
+                    open_class != '' &&
+                    <div className='rectang-menu' onClick={()=> {
+                        this._isOpenMenu(open_class)
+                        this.props.TriggerMenuMobile();
+                    }}></div>
                 }
             </React.Fragment>
         )

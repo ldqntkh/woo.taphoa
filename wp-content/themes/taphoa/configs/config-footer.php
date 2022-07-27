@@ -57,7 +57,7 @@ $config = [
         "follows"   => [
             [
                 "url"   => "facebook",
-                "title" => "https://dev.taphoa/wp-content/uploads/2022/07/f-logo.png"
+                "title" => "/wp-content/uploads/2022/07/f-logo.png"
             ]
         ]
     ]

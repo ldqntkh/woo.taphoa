@@ -12,7 +12,21 @@ body {
     // background: url(../../images/background.jpg) top right repeat-y;
     background-size: contain;
     background-color: #d2c7c736;
-    padding-top: 100px;
+    padding-top: 120px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100px;
+        background-color: #77d0ff;
+        top: 0;
+        border-bottom-left-radius: 50%;
+        @media screen and (min-width: 820px) {
+            display: none;
+        }
+    }
 
     &.disable {
         overflow: hidden;
@@ -22,10 +36,13 @@ body {
 .rectang-menu {
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: -100%;
     width: 100%;
-    z-index: 0;
+    z-index: 11;
     background: #0000005e;
+    @media screen and (min-width: 820px) {
+        display: none;
+    }
 }
 
 .container {

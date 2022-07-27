@@ -69,7 +69,7 @@ header {
                 padding: 0;
             }
             .nav-menus {
-                max-height: 300px;
+                max-height: 250px;
                 overflow-y: auto;
                 padding-bottom: 15px;
                 a {
@@ -166,6 +166,7 @@ header {
                         -ms-transition: all .5s; 
                         -o-transition: all .5s; 
                         transition: all .5s;  
+                        z-index: 10;
                         &::before {
                             content: '';
                             width: 10px;
@@ -185,6 +186,66 @@ header {
                             }
                         }
                     }
+                }
+            }
+        }
+
+        .hide-mobile.search-box {
+            position: absolute;
+            width: 600px;
+            height: 50px;
+            background: white;
+            top: 60px;
+            z-index: 1;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            @media screen and (min-width: 820px) {
+                display: flex;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                clip-path: polygon(100% 0, 0 0, 100% 100%);
+                left: -50px;
+                background: white;
+            }
+            input {
+                width: calc(100% - 100px);
+                padding: 5px;
+                height: 20px;
+                border: 0.5px solid silver;
+                border-radius: 4px;
+            }
+            a {
+                display: block;
+                width: 50px;
+                height: 50px;
+                position: relative;
+                #cart-total {
+                    color: white;
+                    background-color: red;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    position: absolute;
+                    text-align: center;
+                    font-size: 12px;
+                    line-height: 1.7;
+                    right: 10px;
+                }
+                .i-cart {
+                    width: 30px;
+                    height: 30px;
+                    background: url(../../images/i-cart.png) center no-repeat;
+                    background-size: 60%;
+                    border-radius: 50%;
+                    border: 2px solid #ff0000a8;
+                    display: block;
+                    margin-top: 7px;
+                    background-color: #ff00001a;
                 }
             }
         }
