@@ -2,7 +2,7 @@ header {
     width: 100%;
     position: fixed;
     z-index: 999999;
-    background-color: #77d0ff;
+    background-color: $header_bg_color;
     top: 0;
     .main-header {
         height: 50px;
@@ -194,12 +194,13 @@ header {
             position: absolute;
             width: 600px;
             height: 50px;
-            background: white;
+            background: $header_bg_color;
             top: 60px;
             z-index: 1;
             display: none;
             justify-content: space-between;
             align-items: center;
+            border-bottom-right-radius: 8px;
             @media screen and (min-width: 820px) {
                 display: flex;
             }
@@ -210,7 +211,7 @@ header {
                 height: 50px;
                 clip-path: polygon(100% 0, 0 0, 100% 100%);
                 left: -50px;
-                background: white;
+                background: $header_bg_color;
             }
             input {
                 width: calc(100% - 100px);
