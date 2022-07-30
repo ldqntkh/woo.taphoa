@@ -1,0 +1,107 @@
+.ads-container {
+    h3 {
+        margin: 0;
+        padding: 0;
+    }
+    margin-top: 20px;
+    img {
+        width: 100%;
+        height: auto;
+    }
+    &.has-title {
+        border: 2px solid $border_ads_color;
+        border-radius: 8px;
+        box-sizing: border-box;
+        overflow: hidden;
+        background-color: $header_bg_asd_color;
+        .header {
+            padding: 5px 5px 5px 2.5px;
+        }
+        h3 {
+            color: white;
+        }
+    }
+    a {
+        display: flex;
+    }
+}
+
+.product-item {
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: .5px solid $border_product_color;
+    box-sizing: border-box;
+    .p-image {
+        text-align: center;
+        width: 80%;
+        overflow: hidden;
+        img {
+            width: 100%;
+            -webkit-transition: all 1s; 
+            -moz-transition: all 1s; 
+            -ms-transition: all 1s; 
+            -o-transition: all 1s; 
+            transition: all 1s;  
+        }
+    }
+    .p-content {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+        >a {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100px;
+            display: flex;
+            h4 {
+                @include linetext(2);
+                margin: 5px 0;
+                padding: 0;
+                height: 45px;
+            }
+            .p-price {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                ins, del {
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                del {
+                    text-decoration: line-through;
+                    font-size: .9rem;
+                }
+                ins {
+                    font-size: 1.1rem;
+                    color: red;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 768px) {
+        width: 33.33%;
+    }
+    @media screen and (min-width: 1024px) {
+        width: 25%;
+    }
+    
+    &:hover {
+        .p-image {
+            img {
+                transform: scale(1.5);
+            }
+        }
+        .p-content {
+            h4 {
+                color: red;
+            }
+        }
+    }
+}

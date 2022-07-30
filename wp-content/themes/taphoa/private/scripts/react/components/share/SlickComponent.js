@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const SlickComponent = ({slickConfig, sliderData})=> {
       return (
-        <div>
+        <div className='container home-slider-top'>
             <Slider {...slickConfig}>
                 {
                     sliderData.map((item)=> {

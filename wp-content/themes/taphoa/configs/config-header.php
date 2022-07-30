@@ -1,6 +1,6 @@
 <?php
 
-$config = [
+$config_header = [
     "version"   =>  0.0001,
     "logoUrl"   => "/wp-content/uploads/2022/07/logo.png",
     "title_seo" => "Ăn vặt MeoMeo - Chuyên cung cấp những mặt hàng ăn vặt chất lượng nhất đến mọi người",

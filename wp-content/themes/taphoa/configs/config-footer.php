@@ -1,6 +1,6 @@
 <?php
 
-$config = [
+$config_footer = [
     "version"   =>  0.0001,
     "logoUrl"   => "/wp-content/uploads/2022/07/logo.png",
     "slogan"    => "Chúng tôi chuyên cung cấp những mặt hàng ăn vặt văn phòng, mặt hàng hải sản tươi sống - khô và những mặt hàng chất lượng khác",

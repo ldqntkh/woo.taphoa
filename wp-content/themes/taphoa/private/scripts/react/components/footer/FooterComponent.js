@@ -15,32 +15,37 @@ class FooterComponent extends React.Component {
     }
 
     _loadFooter = async()=> {
-        let sessionStorageKey = 'footer_data';
-        let footer_data = sessionStorage.getItem( sessionStorageKey );
+        
         try {
             let flag = false;
             // get data từ sessionStorage
-            if( footer_data ) {
-                footer_data = JSON.parse(footer_data);
-                this.setState(footer_data);
+            if( typeof config_footer != undefined ) {
+                this.setState(config_footer);
                 flag = true;
             }
 
             if( !flag ) {
-                // fetch from server to check version
-                let response = await axios.get( AJAX_URL, {
-                    params: {
-                        'footer-ajax': true
+                let sessionStorageKey = 'footer_data';
+                let footer_data = sessionStorage.getItem( sessionStorageKey );
+                if( footer_data ) {
+                    footer_data = JSON.parse(footer_data);
+                    this.setState(footer_data);
+                } else {
+                    // fetch from server to check version
+                    let response = await axios.get( AJAX_URL, {
+                        params: {
+                            'footer-ajax': true
+                        }
+                    } );
+                    if( response.data.success ) {
+                        let responseData = response.data.data;
+                        if( responseData.version != this.state.version ) {
+                            this.setState(responseData);
+                            // ghi vào sessionStorage
+                            sessionStorage.setItem( sessionStorageKey, JSON.stringify(responseData) )
+                        }
+                        
                     }
-                } );
-                if( response.data.success ) {
-                    let responseData = response.data.data;
-                    if( responseData.version != this.state.version ) {
-                        this.setState(responseData);
-                        // ghi vào sessionStorage
-                        sessionStorage.setItem( sessionStorageKey, JSON.stringify(responseData) )
-                    }
-                    
                 }
             }
         } catch (err) {
