@@ -167,18 +167,10 @@ class MainHeaderComponent extends React.Component {
                                                         window.payload = item.payload;
                                                         // this.props.TriggerMenuMobile();
                                                     }}
-                                                    to={ item.subs && item.subs.length > 0 ?  "#" : item.url }
+                                                    to={ item.url }
                                                 >{item.label}</Link>
                                                 { item.subs && item.subs.length > 0 &&
                                                     <ul className='sub-items'>
-                                                        { item.subs && item.subs.length > 0 && 
-                                                            <li key={uuidv4()}>
-                                                                <Link onClick={()=> {
-                                                                    this._setPageTitle(item.title_seo);
-                                                                    window.payload = item.payload;
-                                                                    // this.props.TriggerMenuMobile();
-                                                                }} to={item.url}>{item.label}</Link>
-                                                            </li> }
                                                         {
                                                             item.subs.map((subItem, subIndex) => 
                                                                 <li key={uuidv4()}>

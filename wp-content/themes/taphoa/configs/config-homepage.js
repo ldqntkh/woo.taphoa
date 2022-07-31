@@ -28,12 +28,12 @@ window.config_home = {
                 "image_url":"/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
                 "title":"Chè dưỡng nhan (chai 500ml)",
                 "regular_price":"35000",
-                "sale_price":""
+                "sale_price":"",
             },
             {
-                "url":"/san-pham/che-duong-nhan-chai-300ml",
+                "url":"/san-pham/che-duong-nhan-chai-330ml",
                 "image_url":"/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title":"Chè dưỡng nhan (chai 300ml)",
+                "title":"Chè dưỡng nhan (chai 330ml)",
                 "regular_price":"30000",
                 "sale_price":"25000"
             },
@@ -45,9 +45,9 @@ window.config_home = {
                 "sale_price":""
             },
             {
-                "url":"/san-pham/che-duong-nhan-chai-300ml",
+                "url":"/san-pham/che-duong-nhan-chai-330ml",
                 "image_url":"/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title":"Chè dưỡng nhan (chai 300ml)",
+                "title":"Chè dưỡng nhan (chai 330ml)",
                 "regular_price":"30000",
                 "sale_price":"25000"
             },
@@ -59,9 +59,9 @@ window.config_home = {
                 "sale_price":""
             },
             {
-                "url":"/san-pham/che-duong-nhan-chai-300ml",
+                "url":"/san-pham/che-duong-nhan-chai-330ml",
                 "image_url":"/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title":"Chè dưỡng nhan (chai 300ml)",
+                "title":"Chè dưỡng nhan (chai 330ml)",
                 "regular_price":"30000",
                 "sale_price":"25000"
             }
@@ -86,9 +86,9 @@ window.config_home = {
                 "sale_price":""
             },
             {
-                "url":"/san-pham/che-duong-nhan-chai-300ml",
+                "url":"/san-pham/che-duong-nhan-chai-330ml",
                 "image_url":"/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title":"Chè dưỡng nhan (chai 300ml)",
+                "title":"Chè dưỡng nhan (chai 330ml)",
                 "regular_price":"30000",
                 "sale_price":"25000"
             },
@@ -100,9 +100,9 @@ window.config_home = {
                 "sale_price":""
             },
             {
-                "url":"/san-pham/che-duong-nhan-chai-300ml",
+                "url":"/san-pham/che-duong-nhan-chai-330ml",
                 "image_url":"/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title":"Chè dưỡng nhan (chai 300ml)",
+                "title":"Chè dưỡng nhan (chai 330ml)",
                 "regular_price":"30000",
                 "sale_price":"25000"
             },
@@ -114,9 +114,9 @@ window.config_home = {
                 "sale_price":""
             },
             {
-                "url":"/san-pham/che-duong-nhan-chai-300ml",
+                "url":"/san-pham/che-duong-nhan-chai-330ml",
                 "image_url":"/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title":"Chè dưỡng nhan (chai 300ml)",
+                "title":"Chè dưỡng nhan (chai 330ml)",
                 "regular_price":"30000",
                 "sale_price":"25000"
             }

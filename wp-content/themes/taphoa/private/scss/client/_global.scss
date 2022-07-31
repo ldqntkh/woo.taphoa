@@ -71,3 +71,73 @@ body {
         display: initial;
     }
 }
+
+.loading {
+    position: fixed;
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.464);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .i-loading {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border-top: 4px solid red;
+            border-bottom: 4px solid red;
+            box-sizing: border-box;
+            animation: loading-animation 2s infinite linear;
+        }
+    }
+    img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@keyframes loading-animation {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.p-breadcrumb {
+    background-color: #c0c0c063;
+    .breadcrumb {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        >span {
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-top: 2px solid black;
+            border-right: 2px solid black;
+            transform: rotate(45deg);
+            margin: 0 10px;
+        }
+    }
+}
+
+.error-msg {
+    padding: 20px 0;
+    text-align: center;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+}

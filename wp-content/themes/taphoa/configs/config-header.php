@@ -11,11 +11,11 @@ $config_header = [
     "menus"     => [
         [
             "label" => "Mực tẩm",
-            "title_seo" => "Mực tẩm ngon chất lượng - Ăn vặt MeoMeo",
+            "title_seo" => "Mực tẩm ngon chất lượng" . " - " . get_bloginfo('name'),
             "url"   => "/danh-muc/muc-tam",
             "payload"   => [
                 "page" => 'product-archive',
-                "title" => "Mực tẩm - Ăn vặt MeoMeo",
+                "title" => "Mực tẩm" . " - " . get_bloginfo('name'),
                 "paged" => 1,
                 "category_id" => 16,
                 "category_slug" => "muc-tam",
@@ -25,11 +25,11 @@ $config_header = [
         ],
         [
             "label" => "Mực khô",
-            "title_seo" => "Mực khô chất lượng các loại - Ăn vặt MeoMeo",
+            "title_seo" => "Mực khô chất lượng các loại" . " - " . get_bloginfo('name'),
             "url"   => "/danh-muc/muc-kho",
             "payload"   => [
                 "page" => 'product-archive',
-                "title" => "Mực khô - Ăn vặt MeoMeo",
+                "title" => "Mực khô" . " - " . get_bloginfo('name'),
                 "paged" => 1,
                 "category_id" => 17,
                 "category_slug" => "muc-kho",
@@ -39,11 +39,11 @@ $config_header = [
             "subs"  => [
                 [
                     "label" => "Mực lá 1 nắng",
-                    "title_seo" => "Mực lá 1 nắng Nha Trang - Ăn vặt MeoMeo",
+                    "title_seo" => "Mực lá 1 nắng Nha Trang" . " - " . get_bloginfo('name'),
                     "url"   => "/danh-muc/muc-kho/muc-la-mot-nang",
                     "payload"   => [
                         "page" => 'product-archive',
-                        "title" => "Mực lá 1 nắng - Ăn vặt MeoMeo",
+                        "title" => "Mực lá 1 nắng" . " - " . get_bloginfo('name'),
                         "paged" => 1,
                         "category_id" => 19,
                         "category_slug" => "muc-la-mot-nang",
@@ -53,11 +53,11 @@ $config_header = [
                 ],
                 [
                     "label" => "Mực ống 1,5 nắng",
-                    "title_seo" => "Mực ống 1.5 nắng Nha Trang - Ăn vặt MeoMeo",
+                    "title_seo" => "Mực ống 1.5 nắng Nha Trang" . " - " . get_bloginfo('name'),
                     "url"   => "/danh-muc/muc-kho/muc-ong-mot-nang-ruoi",
                     "payload"   => [
                         "page" => 'product-archive',
-                        "title" => "Mực ống 1,5 nắng - Ăn vặt MeoMeo",
+                        "title" => "Mực ống 1,5 nắng" . " - " . get_bloginfo('name'),
                         "paged" => 1,
                         "category_id" => 20,
                         "category_slug" => "muc-ong-mot-nang-ruoi",
@@ -67,11 +67,11 @@ $config_header = [
                 ],
                 [
                     "label" => "Mực trứng muối",
-                    "title_seo" => "Mực trứng muối - Ăn vặt MeoMeo",
+                    "title_seo" => "Mực trứng muối" . " - " . get_bloginfo('name'),
                     "url"   => "/danh-muc/muc-kho/muc-trung-muoi",
                     "payload"   => [
                         "page" => 'product-archive',
-                        "title" => "Mực trứng muối - Ăn vặt MeoMeo",
+                        "title" => "Mực trứng muối" . " - " . get_bloginfo('name'),
                         "paged" => 1,
                         "category_id" => 21,
                         "category_slug" => "muc-trung-muoi",
@@ -83,11 +83,11 @@ $config_header = [
         ],
         [
             "label" => "Chè dưỡng nhan",
-            "title_seo" => "Chè dưỡng nhan nhà nấu - Ăn vặt MeoMeo",
+            "title_seo" => "Chè dưỡng nhan nhà nấu" . " - " . get_bloginfo('name'),
             "url"   => "/danh-muc/che-duong-nhan",
             "payload"   => [
                 "page" => 'product-archive',
-                "title" => "Chè dưỡng nhan - Ăn vặt MeoMeo",
+                "title" => "Chè dưỡng nhan" . " - " . get_bloginfo('name'),
                 "paged" => 1,
                 "category_id" => 22,
                 "category_slug" => "che-duong-nhan",
@@ -97,11 +97,11 @@ $config_header = [
         ],
         [
             "label" => "Dầu dừa",
-            "title_seo" => "Dầu dừa nguyên chất - Ăn vặt MeoMeo",
+            "title_seo" => "Dầu dừa nguyên chất" . " - " . get_bloginfo('name'),
             "url"   => "/danh-muc/dau-dua",
             "payload"   => [
                 "page" => 'product-archive',
-                "title" => "Dầu dừa nguyên chất - Ăn vặt MeoMeo",
+                "title" => "Dầu dừa nguyên chất" . " - " . get_bloginfo('name'),
                 "paged" => 1,
                 "category_id" => 23,
                 "category_slug" => "dau-dua",
@@ -111,11 +111,11 @@ $config_header = [
         ],
         [
             "label" => "Mắm tép",
-            "title_seo" => "Mắm tép các loại - Ăn vặt MeoMeo",
+            "title_seo" => "Mắm tép các loại" . " - " . get_bloginfo('name'),
             "url"   => "/danh-muc/mam-tep",
             "payload"   => [
                 "page" => 'product-archive',
-                "title" => "Mắm tép các loại - Ăn vặt MeoMeo",
+                "title" => "Mắm tép các loại" . " - " . get_bloginfo('name'),
                 "paged" => 1,
                 "category_id" => 24,
                 "category_slug" => "mam-tep",

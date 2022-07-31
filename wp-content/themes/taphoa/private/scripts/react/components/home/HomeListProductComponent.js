@@ -10,7 +10,11 @@ const HomeListProductComponent = ({ dataProducts })=> {
         <div className={`container home-${dataProducts.display_type}-products`}>
             <div className='header'>
                 <h3>{dataProducts.title}</h3>
-                <Link to={dataProducts.url} className="show-768">
+                <Link onClick={()=> {
+                                window.payload = dataProducts.payload;
+                                document.title = dataProducts.payload.title
+                            }} 
+                    to={dataProducts.url} className="show-768">
                     Xem thêm
                 </Link>
             </div>
@@ -35,7 +39,11 @@ const HomeListProductComponent = ({ dataProducts })=> {
                 }
             </div>
             <div className='footer hide-768'>
-                <Link to={dataProducts.url}>
+                <Link onClick={()=> {
+                                window.payload = dataProducts.payload;
+                                document.title = dataProducts.payload.title
+                            }} 
+                    to={dataProducts.url}>
                     Xem thêm
                 </Link>
             </div>

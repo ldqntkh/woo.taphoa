@@ -26,7 +26,8 @@ $transient_archive = 'TRANSIENT_ARCHIVE';
 if( is_shop() ) {
     $transient_archive = $transient_archive . '_SHOP';
 } else {
-    $transient_archive = $transient_archive . '_PRODUCT';
+    $category = get_queried_object();
+    $transient_archive = $transient_archive . '_PRODUCT' . '-' . $category->term_id;
 }
 
 $payload = get_transient($transient_archive);
@@ -44,8 +45,6 @@ if( $payload ) {
             "cat_url" => get_permalink( wc_get_page_id( 'shop' ) )
         ];
     } else {
-        $category = get_queried_object();
-        $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
         $category_id = $category->term_id;
         $category_slug = $category->slug;
         $total = $category->count;
@@ -54,7 +53,7 @@ if( $payload ) {
             "page" => 'product-archive',
             "title" => $category->name . ' - ' . get_bloginfo('name'),
             // "category" => json_encode($category),
-            "paged" => $paged,
+            // "paged" => $paged,
             "category_id" => $category_id,
             "category_slug" => $category_slug,
             "total" => $total,

@@ -14,7 +14,10 @@ const SlickComponent = ({slickConfig, sliderData})=> {
                     sliderData.map((item)=> {
                         return(
                             <div className='slider-item' key={uuidv4()}>
-                                <Link to={item.url}>
+                                <Link onClick={()=> {
+                                    window.payload = item.payload;
+                                    document.title = item.payload.title
+                                }} to={item.url}>
                                     <img src={item.image_url} alt={item.title} />
                                 </Link>
                             </div>

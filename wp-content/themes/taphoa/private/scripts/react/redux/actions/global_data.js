@@ -1,0 +1,5 @@
+const SHOW_LOADING = 'SHOW_LOADING';
+
+export {
+    SHOW_LOADING
+}

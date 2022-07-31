@@ -12,7 +12,11 @@ const AdsImageComponent = ({adsData})=> {
                 </div>
             }
             <div className='content'>
-                <Link to={adsData.url}>
+                <Link onClick={()=> {
+                                    window.payload = item.payload;
+                                    document.title = item.payload.title
+                                }} 
+                    to={adsData.url}>
                     <img src={adsData.image_url} alt={adsData.title} />
                 </Link>
             </div>

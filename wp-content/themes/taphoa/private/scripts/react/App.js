@@ -5,7 +5,7 @@ import { BrowserRouter as Router,
     Routes, 
     Route } from 'react-router-dom';
 
-
+import { connect } from 'react-redux';
 import { Provider } from 'react-redux';
 import {AppStore} from './redux/store/IndexStore';
     
@@ -14,28 +14,10 @@ const NoMatchComponent = lazy(()=> import('./components/NoMatchComponent'));
 const ProductComponent = lazy(()=> import('./components/product/ProductComponent'));
 const ArchiveComponent = lazy(()=> import('./components/ArchiveComponent'));
 
-// var MainComponent = null;
-// switch( window.payload.page ) {
-//     case 'home':
-//         MainComponent = MainHomeComponent;
-//         break;
-// }
-
-
-const container = document.getElementById('main-app-container');
-const root = createRoot(container);
-
-
-root.render(
-    <Suspense fallback={
-        <div className="loading">
-            <div className="outerCircle"></div>
-            <div className="innerCircle"></div>
-        </div>
-    }>
-        <Router>
-            {/* <MainComponent /> */}
-            <Provider store={AppStore}>
+const MainApp = ({globalData})=> {
+    return(
+        <React.Fragment>
+            <Router>
                 <Routes>
                     <Route exact path="/" element={<MainHomeComponent />} />
                     {/* Category */}
@@ -49,6 +31,41 @@ root.render(
                     <Route path="/404" element={<NoMatchComponent />} />
                     <Route path="*" element={<NoMatchComponent />} />
                 </Routes>
+            </Router>
+        </React.Fragment>
+    )
+}
+
+// create container
+const mapStateToProps = state => ({
+    
+});
+const mapDispatchToProps = dispatch => ({
+    
+});
+
+const MainAppConnect = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MainApp);
+
+const App = ()=> {
+    return (
+        <Suspense fallback={
+            <div className="loading">
+                <div className="outerCircle"></div>
+                <div className="innerCircle"></div>
+            </div>
+        }>
+            <Provider store={AppStore}>
+                <MainAppConnect />
             </Provider>
-        </Router>
-    </Suspense>);
+        </Suspense>
+    )
+}
+
+const container = document.getElementById('main-app-container');
+const root = createRoot(container);
+
+
+root.render(<App />);

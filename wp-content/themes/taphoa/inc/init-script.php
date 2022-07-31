@@ -15,10 +15,10 @@ if( !function_exists ( 'taphoa_activate_stylesheet_header' ) ) {
 if( !function_exists ( 'taphoa_activate_javascripts' ) ) {
     function taphoa_activate_javascripts() {
         // Javascript
-        $script_file = THEME_URI . '/build/js/single.js?ver='.STYLE_VERSION;
+        // $script_file = THEME_URI . '/build/js/single.js?ver='.STYLE_VERSION;
         // $slick_file =  THEME_URI  . '/build/js/slick.min.js?ver='.STYLE_VERSION;
         // wp_enqueue_script('slickJS', $slick_file, array('jquery'), STYLE_VERSION);
-        wp_enqueue_script('app-script', $script_file, array('jquery'), STYLE_VERSION);
+        // wp_enqueue_script('app-script', $script_file, array('jquery'), STYLE_VERSION);
         
         // add custom config header-home-footer
         // $time_version = time();
