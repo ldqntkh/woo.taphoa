@@ -61,54 +61,6 @@ $config_home = [
             "cat_url" => "/danh-muc/che-duong-nhan"
         ],
         "products"  => [
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-500ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 500ml)",
-                "regular_price" => "35000",
-                "sale_price"    => "",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 500ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 17
-                ]
-            ],
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-330ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 330ml)",
-                "regular_price" => "30000",
-                "sale_price"    => "25000",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 330ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 19
-                ]
-            ],
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-500ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 500ml)",
-                "regular_price" => "35000",
-                "sale_price"    => "",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 500ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 17
-                ]
-            ],
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-330ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 330ml)",
-                "regular_price" => "30000",
-                "sale_price"    => "25000",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 330ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 19
-                ]
-            ],
         ]
     ],
     "ads_2"   => [
@@ -140,54 +92,6 @@ $config_home = [
             "cat_url" => "/danh-muc/che-duong-nhan"
         ],
         "products"  => [
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-500ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 500ml)",
-                "regular_price" => "35000",
-                "sale_price"    => "",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 500ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 17
-                ]
-            ],
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-330ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 330ml)",
-                "regular_price" => "30000",
-                "sale_price"    => "25000",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 330ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 19
-                ]
-            ],
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-500ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 500ml)",
-                "regular_price" => "35000",
-                "sale_price"    => "",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 500ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 17
-                ]
-            ],
-            [
-                "url"   => "/san-pham/che-duong-nhan-chai-330ml",
-                "image_url" => "/wp-content/uploads/2022/07/che-duong-nhan-300x300.jpg",
-                "title"     => "Chè dưỡng nhan (chai 330ml)",
-                "regular_price" => "30000",
-                "sale_price"    => "25000",
-                "payload"   => [
-                    "page"	=> 'single-product',
-                    "title"	=> "Chè dưỡng nhan (chai 330ml)" . ' - ' . get_bloginfo('name'),
-                    "product_id"	=> 19
-                ]
-            ],
         ]
     ]
 ];

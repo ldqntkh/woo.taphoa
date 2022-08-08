@@ -39,13 +39,23 @@
         text-align: center;
         width: 80%;
         overflow: hidden;
-        img {
-            width: 100%;
-            -webkit-transition: all 1s; 
-            -moz-transition: all 1s; 
-            -ms-transition: all 1s; 
-            -o-transition: all 1s; 
-            transition: all 1s;  
+        a {
+            display: block;
+            img {
+                width: 100%;
+                max-width: 150px;
+                max-height: 150px;
+                object-fit: cover;
+                -webkit-transition: all 1s; 
+                -moz-transition: all 1s; 
+                -ms-transition: all 1s; 
+                -o-transition: all 1s; 
+                transition: all 1s;  
+                @media screen and (min-width: 768px) {
+                    max-width: 210px;
+                    max-height: 210px;
+                }
+            }
         }
     }
     .p-content {

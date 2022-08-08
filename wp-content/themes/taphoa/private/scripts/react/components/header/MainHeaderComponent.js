@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 
-import { AJAX_URL } from '../../variables/constants';
+import { AJAX_URL, ADMIN_AJAX_URL } from '../../variables/constants';
 
 // redux
-import { TriggerMenuMobile } from '../../redux/functions/header_functions';
+import { TriggerMenuMobile, SetCartItemCount } from '../../redux/functions/header_functions';
 
 class MainHeaderComponent extends React.Component {
     constructor( props ) {
@@ -23,6 +23,16 @@ class MainHeaderComponent extends React.Component {
     }
 
     async componentDidMount() {
+        // check cart total
+        let sessionStorageCartItemKey = 'sessionStorageCartItemKey';
+        let cartData = sessionStorage.getItem(sessionStorageCartItemKey);
+        if( cartData ) {
+            cartData = JSON.parse(cartData);
+            this.props.SetCartItemCount(cartData.total)
+        } else {
+            this._loadCartItemCount()
+        }
+        
         window.addEventListener('resize', this._onWindowResize);
         await this._loadHeader()
     }
@@ -31,9 +41,30 @@ class MainHeaderComponent extends React.Component {
         window.removeEventListener('resize', this._onWindowResize);
     }
     
+    componentDidUpdate() {
+    }
+    
     _onWindowResize = () => {
         if( this.state.showPcSearch && window.innerWidth < 820 ) {
             this.setState({ showPcSearch: false });
+        }
+    }
+    
+    _loadCartItemCount = async()=> {
+        try {
+            var bodyFormData = new FormData();
+            bodyFormData.append('action', 'get_cart');
+            let response = await axios.post(ADMIN_AJAX_URL, bodyFormData);
+            if( response.data && response.data.success ) {
+                let sessionStorageCartItemKey = 'sessionStorageCartItemKey';
+                
+                sessionStorage.setItem(sessionStorageCartItemKey, JSON.stringify(response.data.data));
+                this.props.SetCartItemCount(response.data.data.total)
+            } else {
+                alert("Có lỗi xảy ra vui lòng thử lại!")
+            }
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -194,9 +225,15 @@ class MainHeaderComponent extends React.Component {
                             <input onChange={this._onSearchChange} type="text" 
                                 onClick={()=> this.setState({showPcSearch: true})}
                                 placeholder="Bạn tìm gì..." value={searchValue}/>
-                            <Link to="/gio-hang">
-                                <span id='cart-total'>0</span>
+                            <Link className='cart-pc' to="/gio-hang">
+                                <span id='cart-total'>{this.props.headerData.cart_items_count}</span>
                                 <i className="i-cart"></i>
+                                {
+                                    this.props.headerData.isShowMiniCart &&
+                                    <div className='mini-cart'>
+                                        <h4>Đi đến giỏ hàng</h4>
+                                    </div>
+                                }
                             </Link>
                             
                             {/* test */}
@@ -362,9 +399,15 @@ class MainHeaderComponent extends React.Component {
                                 this.setState({ showMobileSearch: !showMobileSearch });
                                 this._isOpenMenu('open');
                             }}></button>
-                        <Link to="/gio-hang">
-                            <span id='cart-total'>0</span>
+                        <Link to="/gio-hang" className="cart-mb">
+                            <span id='cart-total'>{this.props.headerData.cart_items_count}</span>
                             <i className="i-cart"></i>
+                            {
+                                this.props.headerData.isShowMiniCart &&
+                                <div className='mini-cart'>
+                                    <h4>Đi đến giỏ hàng</h4>
+                                </div>
+                            }
                         </Link>
                     </div>
                 </header>
@@ -386,7 +429,8 @@ const mapStateToProps = state => ({
     headerData : state.HeaderReducer,
 });
 const mapDispatchToProps = dispatch => ({
-    TriggerMenuMobile: (flag)=> dispatch(TriggerMenuMobile(flag))
+    TriggerMenuMobile: (flag)=> dispatch(TriggerMenuMobile(flag)),
+    SetCartItemCount: (total) => dispatch(SetCartItemCount(total))
 });
 
 export default connect(

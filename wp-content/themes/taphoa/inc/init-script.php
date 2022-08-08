@@ -30,7 +30,10 @@ if( !function_exists ( 'taphoa_activate_javascripts' ) ) {
         // wp_enqueue_script('script_file_home', $script_file_home, array(), $time_version);
         include THEME_URL . '/configs/config-header.php';
         include THEME_URL . '/configs/config-footer.php';
-        include THEME_URL . '/configs/config-homepage.php';
+        // include THEME_URL . '/configs/config-homepage.php';
+        $transient_home_data = 'TRANSIENT_HOME_DATA';
+        $config_home = get_transient($transient_home_data);
+        $config_home = json_decode($config_home, true);
         ?>
             <script type="text/javascript">
                 const config_header = <?= json_encode($config_header); ?>;

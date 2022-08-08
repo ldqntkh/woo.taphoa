@@ -13,3 +13,6 @@ define( 'STYLE_VERSION', time() );
 require_once INC_PATH . '/init-inc.php';
 require_once API_PATH . '/init-rest-api.php';
 
+// admin 
+require_once ADMIN_PATH . '/init-menu-bar.php';
+require_once ADMIN_PATH . '/init-custom-config.php';

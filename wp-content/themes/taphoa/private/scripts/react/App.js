@@ -14,11 +14,13 @@ const NoMatchComponent = lazy(()=> import('./components/NoMatchComponent'));
 const ProductComponent = lazy(()=> import('./components/product/ProductComponent'));
 const ArchiveComponent = lazy(()=> import('./components/ArchiveComponent'));
 
-const MainApp = ({globalData})=> {
+
+const MainApp = ()=> {
     return(
         <React.Fragment>
             <Router>
                 <Routes>
+                    
                     <Route exact path="/" element={<MainHomeComponent />} />
                     {/* Category */}
                     <Route path="/danh-muc">
@@ -27,27 +29,19 @@ const MainApp = ({globalData})=> {
                     </Route>
                     {/* Product */}
                     <Route exact path="/san-pham/:slug" element={<ProductComponent />} />
+                    {/* Giỏ hàng */}
+                    <Route exact path="/gio-hang" element={<ProductComponent />} />
                     {/* 404 */}
                     <Route path="/404" element={<NoMatchComponent />} />
                     <Route path="*" element={<NoMatchComponent />} />
+                    
                 </Routes>
             </Router>
+           
         </React.Fragment>
     )
 }
 
-// create container
-const mapStateToProps = state => ({
-    
-});
-const mapDispatchToProps = dispatch => ({
-    
-});
-
-const MainAppConnect = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MainApp);
 
 const App = ()=> {
     return (
@@ -58,7 +52,7 @@ const App = ()=> {
             </div>
         }>
             <Provider store={AppStore}>
-                <MainAppConnect />
+                <MainApp />
             </Provider>
         </Suspense>
     )

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const AdsImageComponent = ({adsData})=> {
-    
     return(
         <div className={`container ads-container ${adsData.title != '' && 'has-title'}`}>
             {
@@ -16,7 +15,8 @@ const AdsImageComponent = ({adsData})=> {
                                     window.payload = item.payload;
                                     document.title = item.payload.title
                                 }} 
-                    to={adsData.url}>
+                        to={adsData.url}
+                    >
                     <img src={adsData.image_url} alt={adsData.title} />
                 </Link>
             </div>

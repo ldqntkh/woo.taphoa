@@ -88,8 +88,9 @@ class HomePageComponent extends React.Component {
                                 }} 
                                     sliderData={homepage_data[key]}
                                 />
+                                return;
                             case "ads":
-                                return <AdsImageComponent key={key} adsData={homepage_data[key]} />
+                                return <AdsImageComponent key={key} adsData={homepage_data[key]} />;
                             case "cat":
                                 return <HomeListProductComponent key={key} dataProducts={homepage_data[key]} />
                         }

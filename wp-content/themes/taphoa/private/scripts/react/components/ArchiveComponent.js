@@ -42,7 +42,7 @@ const ArchiveComponent = ({_TriggerLoading})=> {
             setLoading(true);
             let response = await axios.get( url, {
                 params: {
-                    paged: page,
+                    page: page,
                     cat_id: window.payload.category_id
                 }
             } );

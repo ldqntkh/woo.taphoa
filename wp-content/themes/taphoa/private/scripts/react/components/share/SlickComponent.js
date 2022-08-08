@@ -7,11 +7,21 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
 
 const SlickComponent = ({slickConfig, sliderData})=> {
-      return (
+    
+    let _sliderData = sliderData;
+    if( typeof sliderData == 'object' ) {
+        var array = Object.keys(sliderData)
+                .map(function(key) {
+                    return sliderData[key];
+                });
+        _sliderData = array;
+    }
+    
+    return (
         <div className='container home-slider-top'>
             <Slider {...slickConfig}>
                 {
-                    sliderData.map((item)=> {
+                    _sliderData.map((item)=> {
                         return(
                             <div className='slider-item' key={uuidv4()}>
                                 <Link onClick={()=> {
