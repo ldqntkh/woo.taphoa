@@ -6,7 +6,7 @@ import { ShowLoading } from '../../helpers/loading';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import Slider from "react-slick";
-import { ADMIN_AJAX_URL } from '../../variables/constants';
+import { ADMIN_AJAX_URL, SessionStorageCartItemKey } from '../../variables/constants';
 // redux
 // import { SetCartItemCount } from '../../redux/functions/header_functions';
 
@@ -99,9 +99,7 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
                 bodyFormData.append('product_data_add_to_cart', `${product.id}_${quantity}`);
                 let response = await axios.post(ADMIN_AJAX_URL, bodyFormData);
                 if( response.data && response.data.success ) {
-                    let sessionStorageCartItemKey = 'sessionStorageCartItemKey';
-                
-                    sessionStorage.setItem(sessionStorageCartItemKey, JSON.stringify(response.data.data));
+                    sessionStorage.setItem(SessionStorageCartItemKey, JSON.stringify(response.data.data));
                     setCartItemCount(response.data.data.total);
                     showMiniCart(true);
                     setTimeout(()=> showMiniCart(false), 2000)

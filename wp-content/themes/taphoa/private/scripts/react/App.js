@@ -13,7 +13,7 @@ const MainHomeComponent = lazy(()=> import('./components/HomePageComponent'));
 const NoMatchComponent = lazy(()=> import('./components/NoMatchComponent'));
 const ProductComponent = lazy(()=> import('./components/product/ProductComponent'));
 const ArchiveComponent = lazy(()=> import('./components/ArchiveComponent'));
-
+const CartComponent = lazy(()=> import('./components/cart/CartComponent'));
 
 const MainApp = ()=> {
     return(
@@ -30,7 +30,7 @@ const MainApp = ()=> {
                     {/* Product */}
                     <Route exact path="/san-pham/:slug" element={<ProductComponent />} />
                     {/* Giỏ hàng */}
-                    <Route exact path="/gio-hang" element={<ProductComponent />} />
+                    <Route exact path="/gio-hang" element={<CartComponent />} />
                     {/* 404 */}
                     <Route path="/404" element={<NoMatchComponent />} />
                     <Route path="*" element={<NoMatchComponent />} />

@@ -11,6 +11,8 @@ import FooterComponent from '../footer/FooterComponent';
 import MainHeaderComponent from '../header/MainHeaderComponent';
 import ProductContentComponent from './ProductContentComponent';
 
+const NoMatchComponent = lazy(()=> import('../NoMatchComponent'));
+
 const ProductComponent = ({ _SetCartItemCount, _TriggerShowMiniCart })=> {
     if(payload && payload.page == '404') {
         return <NoMatchComponent />

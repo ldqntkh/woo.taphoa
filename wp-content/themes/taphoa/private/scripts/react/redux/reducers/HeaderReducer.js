@@ -16,10 +16,9 @@ export const HeaderReducer = (headerData = {
             result.isShowMenu = typeof action.data != 'undefined' ? action.data : !result.isShowMenu;
             return result;
         case CART_ITEMS_COUNT:
-            result.cart_items_count = action.data >= 1 ? action.data : 1
+            result.cart_items_count = action.data >= 1 ? action.data : 0
             return result;
         case SHOW_MIMI_CART:
-            console.log(action)
             result.isShowMiniCart = action.data
             return result;
         default:

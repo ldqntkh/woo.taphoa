@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 
-import { AJAX_URL, ADMIN_AJAX_URL } from '../../variables/constants';
+import { AJAX_URL, ADMIN_AJAX_URL, SessionStorageCartItemKey } from '../../variables/constants';
 
 // redux
 import { TriggerMenuMobile, SetCartItemCount } from '../../redux/functions/header_functions';
@@ -24,8 +24,7 @@ class MainHeaderComponent extends React.Component {
 
     async componentDidMount() {
         // check cart total
-        let sessionStorageCartItemKey = 'sessionStorageCartItemKey';
-        let cartData = sessionStorage.getItem(sessionStorageCartItemKey);
+        let cartData = sessionStorage.getItem(SessionStorageCartItemKey);
         if( cartData ) {
             cartData = JSON.parse(cartData);
             this.props.SetCartItemCount(cartData.total)
@@ -56,9 +55,7 @@ class MainHeaderComponent extends React.Component {
             bodyFormData.append('action', 'get_cart');
             let response = await axios.post(ADMIN_AJAX_URL, bodyFormData);
             if( response.data && response.data.success ) {
-                let sessionStorageCartItemKey = 'sessionStorageCartItemKey';
-                
-                sessionStorage.setItem(sessionStorageCartItemKey, JSON.stringify(response.data.data));
+                sessionStorage.setItem(SessionStorageCartItemKey, JSON.stringify(response.data.data));
                 this.props.SetCartItemCount(response.data.data.total)
             } else {
                 alert("Có lỗi xảy ra vui lòng thử lại!")
@@ -225,7 +222,9 @@ class MainHeaderComponent extends React.Component {
                             <input onChange={this._onSearchChange} type="text" 
                                 onClick={()=> this.setState({showPcSearch: true})}
                                 placeholder="Bạn tìm gì..." value={searchValue}/>
-                            <Link className='cart-pc' to="/gio-hang">
+                            <Link className='cart-pc' to="/gio-hang" onClick={()=> {
+                                document.title = "Giỏ hàng"
+                            }}>
                                 <span id='cart-total'>{this.props.headerData.cart_items_count}</span>
                                 <i className="i-cart"></i>
                                 {
@@ -399,7 +398,9 @@ class MainHeaderComponent extends React.Component {
                                 this.setState({ showMobileSearch: !showMobileSearch });
                                 this._isOpenMenu('open');
                             }}></button>
-                        <Link to="/gio-hang" className="cart-mb">
+                        <Link to="/gio-hang" className="cart-mb" onClick={()=> {
+                            document.title = "Giỏ hàng"
+                        }}>
                             <span id='cart-total'>{this.props.headerData.cart_items_count}</span>
                             <i className="i-cart"></i>
                             {
