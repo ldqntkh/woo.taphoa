@@ -81,6 +81,27 @@ const CartComponent = ({_SetCartItemCount})=> {
         }
     }
     
+    const _updateCartItem = async(product_id, quantity=1)=> {
+        setLoading(true);
+        try {
+            var bodyFormData = new FormData();
+            bodyFormData.append('action', 'update_cart_item');
+            bodyFormData.append('p-id', `${product_id}_${quantity}`);
+            let response = await axios.post(ADMIN_AJAX_URL, bodyFormData);
+            if( response.data && response.data.success ) {
+                setCart(response.data.data.cart)
+                sessionStorage.setItem(SessionStorageCartItemKey, JSON.stringify(response.data.data.fragment));
+                _SetCartItemCount(response.data.data.fragment.total);
+            } else {
+                alert("Có lỗi xảy ra vui lòng thử lại!");
+            }
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
+    }
+    
     const _renderPopupDelProduct = ()=> {
         return(
             <div className='loading'>
@@ -137,8 +158,10 @@ const CartComponent = ({_SetCartItemCount})=> {
                                                     <input type="number" value={cart_item.quantity} onChange={(e)=> {
                                                         if(isNaN(e.target.value) || e.target.value < 1) {
                                                             cart[index].quantity = 1;
+                                                            _updateCartItem(cart_item.id)
                                                         } else {
                                                             cart[index].quantity = e.target.value;
+                                                            _updateCartItem(cart_item.id, e.target.value)
                                                         }
                                                         setCart(cart)
                                                     }} />
@@ -170,23 +193,25 @@ const CartComponent = ({_SetCartItemCount})=> {
                 <div className='cart-total'>
                     <div className='cart-total-content'>
                         <table>
-                            <tr>
-                                <td className='title'>Tạm tính:</td>
-                                <td className='value'>{numberWithCommas(subTotal)}đ</td>
-                            </tr>
-                            <tr>
-                                <td className='title'>Khuyến mãi:</td>
-                                <td className='value'>{numberWithCommas(discount)}đ</td>
-                            </tr>
-                            <tr className='total'>
-                                <td className='title'>Tổng:</td>
-                                <td className='value'>{numberWithCommas(total)}đ</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td className='title'>Tạm tính:</td>
+                                    <td className='value'>{numberWithCommas(subTotal)}đ</td>
+                                </tr>
+                                <tr>
+                                    <td className='title'>Khuyến mãi:</td>
+                                    <td className='value'>{numberWithCommas(discount)}đ</td>
+                                </tr>
+                                <tr className='total'>
+                                    <td className='title'>Tổng:</td>
+                                    <td className='value'>{numberWithCommas(total)}đ</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
                 <div className='process-payment'>
-                    <Link to={'/thanh-toan'}>Thanh toán</Link>
+                    <Link to={'/thanh-toan'}>Đặt hàng</Link>
                 </div>
             </div>
         )

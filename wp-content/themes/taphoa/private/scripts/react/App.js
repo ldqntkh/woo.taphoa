@@ -31,6 +31,11 @@ const MainApp = ()=> {
                     <Route exact path="/san-pham/:slug" element={<ProductComponent />} />
                     {/* Giỏ hàng */}
                     <Route exact path="/gio-hang" element={<CartComponent />} />
+                    {/* Thanh toán */}
+                    <Route path="/thanh-toan">
+                        <Route path="/" element={<ArchiveComponent />}></Route>
+                        <Route path="/:order_id" element={<ArchiveComponent />}></Route>
+                    </Route>
                     {/* 404 */}
                     <Route path="/404" element={<NoMatchComponent />} />
                     <Route path="*" element={<NoMatchComponent />} />

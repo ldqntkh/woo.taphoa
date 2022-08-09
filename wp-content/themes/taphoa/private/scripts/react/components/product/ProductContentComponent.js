@@ -21,6 +21,8 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
     const [isProductTabImage, setIsProductTabImage] = useState(true);
     const [loading, setLoading] = useState(false);
     const [quantity, setQuantity] = useState(1);
+    const [showInputQuantity, setShowInputQuantity] = useState(false);
+    const [customInputQuantity, setCustomInputQuantity] = useState(1);
     
     const _showPopupImages = ()=> {
         let images = [];
@@ -62,7 +64,7 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
                 <div className='header container'>
                     <div className='header-tab'>
                         <h3 onClick={()=> setIsProductTabImage(true)} className={`${ isProductTabImage ? 'active' : '' }`}>Ảnh sản phẩm</h3>
-                        <h3 onClick={()=> setIsProductTabImage(false)} className={`${ !isProductTabImage ? 'active' : '' }`}>Ảnh từ khách hàng</h3>
+                        {/* <h3 onClick={()=> setIsProductTabImage(false)} className={`${ !isProductTabImage ? 'active' : '' }`}>Ảnh từ khách hàng</h3> */}
                     </div>
                 </div>
                 <div className='tab tab-01'>
@@ -90,13 +92,19 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
         )
     }
     
-    const _addToCart = async()=> {
-        if( quantity > 0 ) {
+    const _addToCart = async(_quantity = null)=> {
+        let qty = !quantity || quantity < 1 ? 0 : quantity;
+       
+        if(typeof _quantity == 'number') {
+            qty = _quantity;
+        }
+        
+        if( qty > 0 ) {
             setLoading(true);
             try {
                 var bodyFormData = new FormData();
                 bodyFormData.append('action', 'insert_multiple_products_to_cart');
-                bodyFormData.append('product_data_add_to_cart', `${product.id}_${quantity}`);
+                bodyFormData.append('product_data_add_to_cart', `${product.id}_${qty}`);
                 let response = await axios.post(ADMIN_AJAX_URL, bodyFormData);
                 if( response.data && response.data.success ) {
                     sessionStorage.setItem(SessionStorageCartItemKey, JSON.stringify(response.data.data));
@@ -111,7 +119,108 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
                 setLoading(false);
                 console.log(err);
             }
+        } else {
+            alert('Vui lòng nhập số lượng cần mua!')
         }
+    }
+    
+    const _addCustomQtyToCart = async()=> {
+        setShowInputQuantity(false);
+        try {
+            let qty = !customInputQuantity || customInputQuantity < 1 ? 0 : customInputQuantity;
+            if( qty < 1 ) {
+                alert('Vui lòng nhập số lượng cần mua!');
+                setShowInputQuantity(true);
+                return false;
+            }
+            await _addToCart(qty);
+            setCustomInputQuantity(1);
+            setShowInputQuantity(false);
+        } catch (err) {
+            console.log(err);
+            setShowInputQuantity(true);
+        }
+    }
+    
+    const _showCustomInputQuantity = ()=> {
+        
+        return(
+            <div className='loading'>
+                <div className='form-input-quantity'>
+                    <div className='header'>
+                        <h3>Số sản phẩm cần đặt</h3>
+                    </div>
+                    <div className='content'>
+                        <label>Số lượng:
+                            <input type="number" value={customInputQuantity} onChange={(e)=> {
+                                if(isNaN(e.target.value) || e.target.value < 1) {
+                                    setCustomInputQuantity('');
+                                } else {
+                                    setCustomInputQuantity(e.target.value);
+                                }
+                            }} />
+                        </label>
+                        
+                    </div>
+                    <div className='footer'>
+                        <button onClick={()=>{
+                            setCustomInputQuantity(1);
+                            setShowInputQuantity(false);
+                        }} className='cancel'>Hủy <i className="fa-solid fa-heart-crack"></i></button>
+                        <button onClick={_addCustomQtyToCart} className='ok'>Xác nhận <i className="fa-solid fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    
+    const _renderCampaignDiscount = ()=> {
+        let discounts = product.chien_dich_giam_gia.split(',');
+        if(!discounts || discounts.length == 0) return null;
+        
+        let arrayNums = [];
+        for(let i = 0; i < discounts.length; i++) {
+            arrayNums.push(discounts[i].split(':')[0])
+        }
+        let rs = [];
+        for(let i = 0; i < discounts.length; i++) {
+            if( i < discounts.length - 1 ) {
+                rs.push(
+                    <li key={uuidv4()}>
+                        <label>
+                            Khách iu đặt từ {arrayNums[i]} đến {arrayNums[i+1]-1} sản phẩm giảm ngay <strong>{numberWithCommas(discounts[i].split(':')[1])}đ</strong>
+                            <button onClick={()=> {
+                                setCustomInputQuantity(arrayNums[i]);
+                                setShowInputQuantity(true);
+                            }} type='button'>Đặt ngay</button>
+                        </label>
+                    </li>
+                )
+            } else {
+                rs.push(
+                    <li key={uuidv4()}>
+                        <label>
+                            Khách iu đặt từ {arrayNums[i]} trở lên sản phẩm giảm ngay <strong>{numberWithCommas(discounts[i].split(':')[1])}đ</strong>
+                            <button onClick={()=> {
+                                setCustomInputQuantity(arrayNums[i]);
+                                setShowInputQuantity(true);
+                            }} type='button'>Đặt ngay</button>
+                        </label>
+                    </li>
+                )
+            }
+        }
+        
+        return(
+            <div className='campaign-discount'>
+                <h3 style={{color: 'red'}}><i className="fa-solid fa-bullhorn"></i><i className="fa-solid fa-bullhorn"></i><i className="fa-solid fa-bullhorn"></i> Khuyến mãi lớn</h3>
+                <ul>
+                    {
+                        rs
+                    }
+                </ul>
+            </div>
+        )
     }
     
     return(
@@ -132,6 +241,10 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
                 </div>
             </div>
             <div className='product-content container'>
+                {
+                    showInputQuantity &&
+                    _showCustomInputQuantity()
+                }
                 <div className='product-header'>
                     <div className='images'>
                         <div className='main-image'>
@@ -174,7 +287,7 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
                                     <label>Số lượng: 
                                     <input type="number" value={quantity} onChange={(e)=> {
                                         if(isNaN(e.target.value) || e.target.value < 1) {
-                                            setQuantity(1);
+                                            setQuantity('');
                                         } else {
                                             setQuantity(e.target.value);
                                         }
@@ -182,6 +295,9 @@ const ProductContentComponent = ({ product, setCartItemCount, showMiniCart })=> 
                                     </label>
                                 </div>
                                 <button onClick={_addToCart} className='btn-order'>Đặt hàng</button>
+                                {
+                                    product.chien_dich_giam_gia && _renderCampaignDiscount()
+                                }
                             </React.Fragment>
                         }
                         {

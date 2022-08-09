@@ -56,6 +56,7 @@ if( !class_exists('AvApiProduct') ) {
                     $pd['dat_hang_truoc'] = get_field('dat_hang_truoc', $product->get_id());
                     $pd['order_note'] = get_field('order_note', $product->get_id());
                     $pd['anh_tu_khach_hang'] = get_field('anh_tu_khach_hang', $product->get_id());
+                    $pd['chien_dich_giam_gia'] = get_field('chien_dich_giam_gia', $product->get_id());
                     
                     wp_send_json_success($pd);
                 }
